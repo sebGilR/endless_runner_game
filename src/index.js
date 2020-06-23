@@ -6,10 +6,13 @@ import PreloaderScene from './scenes/preloader';
 import TitleScene from './scenes/title';
 import OptionsScene from './scenes/options';
 import CreditsScene from './scenes/credits';
+import Preference from './preference';
 
 class Game extends Phaser.Game {
   constructor() {
     super(config);
+    const preference = new Preference();
+    this.globals = { preference };
     this.scene.add('Boot', BootScene);
     this.scene.add('Preloader', PreloaderScene);
     this.scene.add('Title', TitleScene);
