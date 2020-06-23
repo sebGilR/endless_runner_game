@@ -1,31 +1,31 @@
 export default class Preference {
   constructor() {
-    this._soundOn = true;
-    this._musicOn = true;
-    this._bgMusicPlaying = false;
+    this.psoundOn = true;
+    this.pmusicOn = true;
+    this.pbgMusicPlaying = false;
   }
 
   set musicOn(value) {
-    this._musicOn = value;
+    this.pmusicOn = value;
   }
 
   get musicOn() {
-    return this._musicOn;
+    return this.pmusicOn;
   }
 
   set soundOn(value) {
-    this._soundOn = value;
+    this.psoundOn = value;
   }
 
   get soundOn() {
-    return this._soundOn;
+    return this.psoundOn;
   }
 
   set bgMusicPlaying(value) {
-    this._bgMusicPlaying = value;
+    this.pbgMusicPlaying = value;
   }
 
   get bgMusicPlaying() {
-    return this._bgMusicPlaying;
+    return this.pbgMusicPlaying;
   }
 }
