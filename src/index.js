@@ -12,7 +12,7 @@ class Game extends Phaser.Game {
   constructor() {
     super(config);
     const preference = new Preference();
-    this.globals = { preference };
+    this.globals = { preference, bgMusic: null };
     this.scene.add('Boot', BootScene);
     this.scene.add('Preloader', PreloaderScene);
     this.scene.add('Title', TitleScene);

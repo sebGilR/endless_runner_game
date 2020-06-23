@@ -28,7 +28,7 @@ export default class OptionsScene extends Phaser.Scene {
       this.updateAudio();
     }.bind(this));
 
-    this.updateAudio();
+    // this.updateAudio();
 
     this.menuButton = this.add.sprite(400, 500, 'blueButton1').setInteractive();
     this.menuText = this.add.text(0, 0, 'Menu', { fontSize: '32px', fill: '#fff' });
@@ -44,8 +44,14 @@ export default class OptionsScene extends Phaser.Scene {
   updateAudio() {
     if (this.preference.musicOn === false) {
       this.musicButton.setTexture('box');
+      this.sys.game.globals.bgMusic.stop();
+      this.preference.bgMusicPlaying = false;
     } else {
       this.musicButton.setTexture('checkedBox');
+      if (this.preference.bgMusicPlaying === false) {
+        this.sys.game.globals.bgMusic.play();
+        this.preference.bgMusicPlaying = true;
+      }
     }
 
     if (this.preference.soundOn === false) {

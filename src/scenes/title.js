@@ -55,6 +55,14 @@ export default class TitleScene extends Phaser.Scene {
     this.input.on('pointerout', function (event, gameObjects) {
       gameObjects[0].setTexture('blueButton1');
     });
+
+    this.preference = this.sys.game.globals.preference;
+    if (this.preference.musicOn === true && this.preference.bgMusicPlaying === false) {
+      this.bgMusic = this.sound.add('bgMusic', { volume: 0.5, loop: true });
+      this.bgMusic.play();
+      this.preference.bgMusicPlaying = true;
+      this.sys.game.globals.bgMusic = this.bgMusic;
+    }
   }
 
   centerButton(gameObject, offset = 0) {
