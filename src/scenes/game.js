@@ -8,6 +8,7 @@ export default class GameScene extends Phaser.Scene {
     this.playerSpeed = 250;
     this.score = 0;
     this.level = 1;
+    this.levelPoints = 0;
   }
 
   create() {
@@ -93,9 +94,9 @@ export default class GameScene extends Phaser.Scene {
   destroyShip(player, enemy) {
     const explosion = new Explosion(this, enemy.x, enemy.y);
     this.resetShipPos(enemy);
-    this.score += 15;
-    const scoreFromatted = this.zeroPad(this.score, 6);
-    this.scoreLabel.text = 'SCORE: ' + scoreFromatted;
+
+    this.scoreHandler();
+    this.levelHandler();
 
     this.explosionSound.play();
   }
@@ -104,6 +105,22 @@ export default class GameScene extends Phaser.Scene {
     ship.y = -100;
     const randomX = Phaser.Math.Between(0.1, config.width - 5);
     ship.x = randomX;
+  }
+
+  scoreHandler() {
+    this.score += 15;
+    const scoreFromatted = this.zeroPad(this.score, 6);
+    this.scoreLabel.text = 'SCORE: ' + scoreFromatted;
+  }
+
+  levelHandler() {
+    this.levelPoints += 15;
+    if (this.levelPoints > 500) {
+      this.level += 1;
+      this.levelPoints = 0;
+    }
+
+    this.levelLabel.text = 'Level: ' + String(this.level);
   }
 
   movePlayerManager() {
