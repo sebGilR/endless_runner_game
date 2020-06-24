@@ -79,9 +79,6 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('box', 'src/assets/ui/grey_box.png');
     this.load.image('checkedBox', 'src/assets/ui/blue_boxCheckmark.png');
     this.load.image('background', 'src/assets/img/background.png');
-    this.load.image('block1', 'src/assets/img/block1.png');
-    this.load.image('block2', 'src/assets/img/block2.png');
-    this.load.image('block3', 'src/assets/img/block3.png');
     this.load.spritesheet('ship1', 'src/assets/img/ship.png', { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('ship2', 'src/assets/img/ship2.png', { frameWidth: 32, frameHeight: 16 });
     this.load.spritesheet('ship3', 'src/assets/img/ship3.png', { frameWidth: 32, frameHeight: 32 });
