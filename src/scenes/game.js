@@ -6,6 +6,8 @@ export default class GameScene extends Phaser.Scene {
   constructor() {
     super('Game');
     this.playerSpeed = 250;
+    this.score = 0;
+    this.level = 1;
   }
 
   create() {
@@ -44,6 +46,24 @@ export default class GameScene extends Phaser.Scene {
 
     this.explosionSound = this.sound.add('audio_explosion');
     this.pickupSound = this.sound.add('audio_pickup');
+
+    // Score panel
+    const graphics = this.add.graphics();
+    graphics.fillStyle(0x000000, 1);
+    graphics.beginPath();
+    graphics.moveTo(0, 0);
+    graphics.lineTo(config.width, 0);
+    graphics.lineTo(config.width, 20);
+    graphics.lineTo(0, 20);
+    graphics.lineTo(0, 0);
+    graphics.closePath();
+    graphics.fillPath();
+
+    this.scoreLabel = this.add.bitmapText(10, 5, 'pixelFont', 'SCORE: ', 16);
+    const scoreFromatted = this.zeroPad(this.score, 6);
+    this.scoreLabel.text = 'SCORE: ' + scoreFromatted;
+
+    this.levelLabel = this.add.bitmapText(200, 5, 'pixelFont', 'LEVEL: ', 16);
   }
 
   update() {
@@ -73,9 +93,9 @@ export default class GameScene extends Phaser.Scene {
   destroyShip(player, enemy) {
     const explosion = new Explosion(this, enemy.x, enemy.y);
     this.resetShipPos(enemy);
-    // this.score += 15;
-    // const scoreFromatted = this.zeroPad(this.score, 6);
-    // this.scoreLabel.text = 'SCORE: ' + scoreFromatted;
+    this.score += 15;
+    const scoreFromatted = this.zeroPad(this.score, 6);
+    this.scoreLabel.text = 'SCORE: ' + scoreFromatted;
 
     this.explosionSound.play();
   }
@@ -100,5 +120,13 @@ export default class GameScene extends Phaser.Scene {
     } else if (this.cursorKeys.down.isDown) {
       this.player.setVelocityY(this.playerSpeed);
     }
+  }
+
+  zeroPad(number, size) {
+    var stringNumber = String(number);
+    while (stringNumber.length < (size || 2)) {
+      stringNumber = '0' + stringNumber;
+    }
+    return stringNumber;
   }
 }
