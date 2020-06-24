@@ -1,3 +1,4 @@
+import './assets/style/styles.scss'
 import Phaser from 'phaser';
 import config from './config/config';
 import GameScene from './scenes/game';

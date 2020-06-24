@@ -78,8 +78,10 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('phaserLogo', 'src/assets/logo.png');
     this.load.image('box', 'src/assets/ui/grey_box.png');
     this.load.image('checkedBox', 'src/assets/ui/blue_boxCheckmark.png');
-    this.load.audio('bgMusic', ['src/assets/sounds/sci-fi_platformer12.mp3', 'src/assets/sounds/sci-fi_platformer12.ogg']);
     this.load.image('background', 'src/assets/img/background.png');
+    this.load.image('block1', 'src/assets/img/block1.png');
+    this.load.image('block2', 'src/assets/img/block2.png');
+    this.load.image('block3', 'src/assets/img/block3.png');
     this.load.spritesheet('ship1', 'src/assets/img/ship.png', { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('ship2', 'src/assets/img/ship2.png', { frameWidth: 32, frameHeight: 16 });
     this.load.spritesheet('ship3', 'src/assets/img/ship3.png', { frameWidth: 32, frameHeight: 32 });
@@ -88,6 +90,7 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.spritesheet('player', 'src/assets/img/player.png', { frameWidth: 16, frameHeight: 24 });
     this.load.spritesheet('beam', 'src/assets/img/beam.png', { frameWidth: 16, frameHeight: 16 });
     this.load.bitmapFont('pixelFont', 'src/assets/font/font.png', 'src/assets/font/font.xml');
+    this.load.audio('bgMusic', ['src/assets/sounds/sci-fi_platformer12.mp3', 'src/assets/sounds/sci-fi_platformer12.ogg']);
     this.load.audio('audio_beam', ['src/assets/sounds/beam.ogg', 'src/assets/sounds/beam.mp3']);
     this.load.audio('audio_explosion', ['src/assets/sounds/explosion.ogg', 'src/assets/sounds/explosion.mp3']);
     this.load.audio('audio_pickup', ['src/assets/sounds/pickup.ogg', 'src/assets/sounds/pickup.mp3']);
