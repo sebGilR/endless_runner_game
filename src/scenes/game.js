@@ -15,10 +15,10 @@ export default class GameScene extends Phaser.Scene {
     this.background.setScale(2, 2)
     this.background.setOrigin(0, 0);
 
-    this.ship1 = this.add.sprite(config.width / 2 - 50, config.height / 2, "ship1");
-    this.ship2 = this.add.sprite(config.width / 2, config.height / 2, "ship2");
-    this.ship3 = this.add.sprite(config.width / 2 + 50, config.height / 2, "ship3");
-    this.ship4 = this.add.sprite(config.width / 2 + 50, config.height / 2, "ship3");
+    this.ship1 = this.add.sprite(config.width / 2 - 50, config.height / 2 + 50, "ship1");
+    this.ship2 = this.add.sprite(config.width / 2, config.height / 2 - 100, "ship2");
+    this.ship3 = this.add.sprite(config.width / 2 + 50, config.height + 20, "ship3");
+    this.ship4 = this.add.sprite(config.width / 2 - 200, config.height / 2, "ship3");
 
     this.enemies = this.physics.add.group();
     this.enemies.add(this.ship1);
