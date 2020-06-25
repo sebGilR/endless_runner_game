@@ -8,16 +8,25 @@ export default class WelcomeManu extends Phaser.Scene {
   }
 
   create() {
-    this.playButton = new Button(this, 210, 320, 'blueButton1', 'blueButton2', 'Play', 'Game');
+    this.playButton = new Button(this, 250, 400, 'blueButton1', 'blueButton2', 'Play', 'Game');
 
-    this.labelText = this.add.text(100, 180, 'Enter your name:', {
-      fontSize: '25px',
-      fill: '#fff',
-    });
-    this.nameText = this.add.text(130, 210, '[Here...]', {
-      fontSize: '25px',
-      fill: '#fff',
-    });
+    this.levelLabel = this.add.bitmapText(50, 50, 'pixelFont', 'INSTRUCTIONS', 26);
+    this.levelLabel = this.add.bitmapText(
+      30, 100, 'pixelFont',
+      '- Collide against space ships to accumulate points.',
+      22);
+    this.levelLabel = this.add.bitmapText(
+      30, 130, 'pixelFont',
+      '- You\'ll loose one life out of 3 for each ship you miss.',
+      22);
+    this.levelLabel = this.add.bitmapText(
+      30, 160, 'pixelFont',
+      '- Use the arrow keys to move around.',
+      22);
+
+    this.nameLabel = this.add.bitmapText(100, 250, 'pixelFont', 'Enter your name:', 30);
+
+    this.nameText = this.add.bitmapText(100, 280, 'pixelFont', '[ Here... ]', 30);
 
     this.input.keyboard.on('keydown', (e) => {
       if (e.key === 'Backspace' && this.name.length !== 0) {
