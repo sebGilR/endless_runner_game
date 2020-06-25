@@ -6,7 +6,7 @@ export default class GameScene extends Phaser.Scene {
   constructor() {
     super('Game');
     this.playerSpeed = 250;
-    this.score = 0;
+    this.score = 15;
     this.level = 1;
     this.levelPoints = 0;
     this.lives = 3;
@@ -22,6 +22,7 @@ export default class GameScene extends Phaser.Scene {
       loop: false,
       delay: 0
     }
+
     this.pickupSound = this.sound.add('audio_pickup');
 
     this.background = this.add.tileSprite(0, 0, config.width, config.height, 'background');
@@ -134,9 +135,11 @@ export default class GameScene extends Phaser.Scene {
   livesHandler() {
     this.lives -= 1
     if (this.lives < 0) {
-      this.pickupSound.play(this.soundConfig);
+      this.sys.game.globals.score = this.score;
+      this.scene.start('Leaderboard');
+      this.lives = 3;
     }
-
+    this.pickupSound.play(this.soundConfig);
     this.livesLabel.text = 'LIVES: ' + String(this.lives);
   }
 

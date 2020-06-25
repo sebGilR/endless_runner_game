@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "phaser": "^3.23.0"
+    "phaser": "^3.23.0",
+    "regenerator-runtime": "^0.13.5"
   }
 }
