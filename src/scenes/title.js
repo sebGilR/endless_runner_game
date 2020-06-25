@@ -8,6 +8,10 @@ export default class TitleScene extends Phaser.Scene {
   }
 
   create() {
+    this.background = this.add.tileSprite(0, 0, config.width, config.height, 'background');
+    this.background.setScale(2, 2)
+    this.background.setOrigin(0, 0);
+
     this.soundConfig = {
       mute: false,
       volume: 0.1,
