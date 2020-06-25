@@ -43,16 +43,16 @@ By the end of the design process the following items were defined:
 - The player can enter their name to save their score and see if they made it to the leaderboard.
 - An options page allows the user to disable the background music.
 - When "Play" is clicked the user can see instructions to play and enter their name.
-- If the player collides with a ship, the ship explodes, score increases and a sound effect is played.
+- If the player collides with a ship, the ship explodes, the score increases, and a sound effect is played.
 - If the player misses to collide with a ship the lives count decreases and a sound effect is played to signal this.
 - When all lives are used and a ship is missed, the game is over and the Leaderboard comes up, where the user can see if they made the cut, and see other players' scores.
-- The level and dificulty increases every 500 points earned.
+- The level and difficulty increase every 500 points earned.
 - The player can move their ship using the arrow keys.
 
 ## Potential Features
 
 - Change scenery for every level.
-- Make it scaleable for small screens.
+- Make it scalable for small screens.
 - Add touch support to move the player's ship to play o mobile.
 
 ## Setup
@@ -86,7 +86,7 @@ Run "npm test".
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/sebGilR/restaurant_home/issues).
+Feel free to check the [issues page](issues/).
 
 ## Show your support
 
