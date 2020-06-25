@@ -7,8 +7,9 @@ export default class GameScene extends Phaser.Scene {
     super('Game');
     this.playerSpeed = 250;
     this.score = 0;
-    this.level = 5;
+    this.level = 1;
     this.levelPoints = 0;
+    this.lives = 3;
   }
 
   create() {
@@ -18,10 +19,10 @@ export default class GameScene extends Phaser.Scene {
     this.background.setScale(2, 2)
     this.background.setOrigin(0, 0);
 
-    this.ship1 = this.add.sprite(config.width / 2 - 50, config.height / 2 + 50, "ship1");
-    this.ship2 = this.add.sprite(config.width / 2, config.height / 2 - 100, "ship2");
-    this.ship3 = this.add.sprite(config.width / 2 + 50, config.height + 20, "ship3");
-    this.ship4 = this.add.sprite(config.width / 2 - 200, config.height / 2, "ship3");
+    this.ship1 = this.add.sprite(config.width / 2 - 50, -50, "ship1");
+    this.ship2 = this.add.sprite(config.width / 2, -100, "ship2");
+    this.ship3 = this.add.sprite(config.width / 2 + 50, -20, "ship3");
+    this.ship4 = this.add.sprite(config.width / 2 - 200, 0, "ship3");
 
     this.enemies = this.physics.add.group();
     this.enemies.add(this.ship1);
@@ -66,6 +67,7 @@ export default class GameScene extends Phaser.Scene {
     this.scoreLabel = this.add.bitmapText(260, 5, 'pixelFont', 'SCORE: ', 16);
     const scoreFromatted = this.zeroPad(this.score, 6);
     this.scoreLabel.text = 'SCORE: ' + scoreFromatted;
+    this.livesLabel = this.add.bitmapText(370, 5, 'pixelFont', 'LIVES: 3', 16);
   }
 
   update() {
@@ -82,11 +84,7 @@ export default class GameScene extends Phaser.Scene {
   moveShip(ship, speed) {
     ship.y += speed
     if (ship.y > config.height) {
-      if (this.score > 30) {
-        this.score -= 30;
-        const scoreFromatted = this.zeroPad(this.score, 6);
-        this.scoreLabel.text = 'SCORE: ' + scoreFromatted;
-      }
+      this.livesHandler();
       this.resetShipPos(ship);
     }
   }
@@ -122,6 +120,15 @@ export default class GameScene extends Phaser.Scene {
     }
 
     this.levelLabel.text = 'LEVEL: ' + String(this.level);
+  }
+
+  livesHandler() {
+    this.lives -= 1
+    if (this.lives < 0) {
+      console.log('Game Over')
+    }
+
+    this.livesLabel.text = 'LIVES: ' + String(this.lives);
   }
 
   movePlayerManager() {
