@@ -1,4 +1,4 @@
-import './assets/style/styles.scss'
+import './assets/style/styles.scss';
 import 'regenerator-runtime';
 import Phaser from 'phaser';
 import config from './config/config';
@@ -10,7 +10,7 @@ import NameScene from './scenes/name';
 import OptionsScene from './scenes/options';
 import CreditsScene from './scenes/credits';
 import Preference from './preference';
-import Leaderboard from './scenes/leaderboard'
+import Leaderboard from './scenes/leaderboard';
 
 class Game extends Phaser.Game {
   constructor() {

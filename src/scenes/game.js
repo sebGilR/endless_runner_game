@@ -1,3 +1,4 @@
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["resetShipPos", "zeroPad"] }] */
 import Phaser from 'phaser';
 import config from '../config/config';
 import Explosion from '../objects/explosion';
@@ -20,19 +21,19 @@ export default class GameScene extends Phaser.Scene {
       datune: 0,
       seek: 0,
       loop: false,
-      delay: 0
-    }
+      delay: 0,
+    };
 
     this.pickupSound = this.sound.add('audio_pickup');
 
     this.background = this.add.tileSprite(0, 0, config.width, config.height, 'background');
-    this.background.setScale(2, 2)
+    this.background.setScale(2, 2);
     this.background.setOrigin(0, 0);
 
-    this.ship1 = this.add.sprite(config.width / 2 - 50, -50, "ship1");
-    this.ship2 = this.add.sprite(config.width / 2, -100, "ship2");
-    this.ship3 = this.add.sprite(config.width / 2 + 50, -20, "ship3");
-    this.ship4 = this.add.sprite(config.width / 2 - 200, 0, "ship3");
+    this.ship1 = this.add.sprite(config.width / 2 - 50, -50, 'ship1');
+    this.ship2 = this.add.sprite(config.width / 2, -100, 'ship2');
+    this.ship3 = this.add.sprite(config.width / 2 + 50, -20, 'ship3');
+    this.ship4 = this.add.sprite(config.width / 2 - 200, 0, 'ship3');
 
     this.enemies = this.physics.add.group();
     this.enemies.add(this.ship1);
@@ -52,7 +53,6 @@ export default class GameScene extends Phaser.Scene {
     this.player.play('thrust');
     this.cursorKeys = this.input.keyboard.createCursorKeys();
     this.player.setCollideWorldBounds(true);
-
 
     this.physics.add.overlap(this.player, this.enemies, this.destroyShip, null, this);
 
@@ -76,12 +76,12 @@ export default class GameScene extends Phaser.Scene {
     this.levelLabel = this.add.bitmapText(190, 5, 'pixelFont', 'LEVEL: 1', 16);
     this.scoreLabel = this.add.bitmapText(260, 5, 'pixelFont', 'SCORE: ', 16);
     const scoreFromatted = this.zeroPad(this.score, 6);
-    this.scoreLabel.text = 'SCORE: ' + scoreFromatted;
+    this.scoreLabel.text = `SCORE: ${scoreFromatted}`;
     this.livesLabel = this.add.bitmapText(370, 5, 'pixelFont', 'LIVES: 3', 16);
   }
 
   update() {
-    this.movePlayerManager()
+    this.movePlayerManager();
 
     this.background.tilePositionY -= 0.5 + this.level / 50;
 
@@ -92,18 +92,16 @@ export default class GameScene extends Phaser.Scene {
   }
 
   moveShip(ship, speed) {
-    ship.y += speed
+    ship.y += speed;
     if (ship.y > config.height) {
       this.livesHandler();
       this.resetShipPos(ship);
     }
   }
 
-
   destroyShip(player, enemy) {
-    const explosion = new Explosion(this, enemy.x, enemy.y);
+    this.explosion = new Explosion(this, enemy.x, enemy.y);
     this.resetShipPos(enemy);
-
     this.scoreHandler();
     this.levelHandler();
 
@@ -119,7 +117,7 @@ export default class GameScene extends Phaser.Scene {
   scoreHandler() {
     this.score += 15;
     const scoreFromatted = this.zeroPad(this.score, 6);
-    this.scoreLabel.text = 'SCORE: ' + scoreFromatted;
+    this.scoreLabel.text = `SCORE: ${scoreFromatted}`;
   }
 
   levelHandler() {
@@ -129,18 +127,18 @@ export default class GameScene extends Phaser.Scene {
       this.levelPoints = 0;
     }
 
-    this.levelLabel.text = 'LEVEL: ' + String(this.level);
+    this.levelLabel.text = `LEVEL: ${String(this.level)}`;
   }
 
   livesHandler() {
-    this.lives -= 1
+    this.lives -= 1;
     if (this.lives < 0) {
       this.sys.game.globals.score = this.score;
       this.scene.start('Leaderboard');
       this.lives = 3;
     }
     this.pickupSound.play(this.soundConfig);
-    this.livesLabel.text = 'LIVES: ' + String(this.lives);
+    this.livesLabel.text = `LIVES: ${String(this.lives)}`;
   }
 
   movePlayerManager() {
@@ -160,9 +158,9 @@ export default class GameScene extends Phaser.Scene {
   }
 
   zeroPad(number, size) {
-    var stringNumber = String(number);
+    let stringNumber = String(number);
     while (stringNumber.length < (size || 2)) {
-      stringNumber = '0' + stringNumber;
+      stringNumber = `0${stringNumber}`;
     }
     return stringNumber;
   }

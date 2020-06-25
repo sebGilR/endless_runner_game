@@ -9,7 +9,7 @@ export default class TitleScene extends Phaser.Scene {
 
   create() {
     this.background = this.add.tileSprite(0, 0, config.width, config.height, 'background');
-    this.background.setScale(2, 2)
+    this.background.setScale(2, 2);
     this.background.setOrigin(0, 0);
 
     this.soundConfig = {
@@ -19,8 +19,8 @@ export default class TitleScene extends Phaser.Scene {
       datune: 0,
       seek: 0,
       loop: false,
-      delay: 0
-    }
+      delay: 0,
+    };
 
     this.gameButton = new Button(this, config.width / 2, config.height / 2 - 100, 'blueButton1', 'blueButton2', 'Play', 'Name');
     this.optionsButton = new Button(this, config.width / 2, config.height / 2, 'blueButton1', 'blueButton2', 'Options', 'Options');

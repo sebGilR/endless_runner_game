@@ -19,14 +19,13 @@ export default class Leaderboard extends Phaser.Scene {
     this.add.bitmapText(100, 90, 'pixelFont', `YOU SCORED: ${this.score}`, 26);
     this.add.bitmapText(100, 150, 'pixelFont', 'LEADERBOARD', 24);
 
-
     for (let i = 0; i < Math.min(5, this.scoreList.length); i += 1) {
       this.add.bitmapText(
         100,
         190 + i * 30,
         'pixelFont',
         `${i + 1}.  ${this.scoreList[i].user}: ${this.scoreList[i].score}`,
-        22
+        22,
       );
     }
 
