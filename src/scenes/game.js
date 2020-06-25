@@ -7,7 +7,7 @@ export default class GameScene extends Phaser.Scene {
     super('Game');
     this.playerSpeed = 250;
     this.score = 0;
-    this.level = 1;
+    this.level = 5;
     this.levelPoints = 0;
   }
 
@@ -60,22 +60,23 @@ export default class GameScene extends Phaser.Scene {
     graphics.closePath();
     graphics.fillPath();
 
-    this.scoreLabel = this.add.bitmapText(10, 5, 'pixelFont', 'SCORE: ', 16);
+    this.name = this.sys.game.globals.name;
+    this.nameLabel = this.add.bitmapText(10, 5, 'pixelFont', this.name.toUpperCase(), 16);
+    this.levelLabel = this.add.bitmapText(190, 5, 'pixelFont', 'LEVEL: 1', 16);
+    this.scoreLabel = this.add.bitmapText(260, 5, 'pixelFont', 'SCORE: ', 16);
     const scoreFromatted = this.zeroPad(this.score, 6);
     this.scoreLabel.text = 'SCORE: ' + scoreFromatted;
-
-    this.levelLabel = this.add.bitmapText(200, 5, 'pixelFont', 'LEVEL: ', 16);
   }
 
   update() {
     this.movePlayerManager()
 
-    this.background.tilePositionY -= 0.5;
+    this.background.tilePositionY -= 0.5 + this.level / 50;
 
-    this.moveShip(this.ship1, 2.5);
-    this.moveShip(this.ship2, 1.5);
-    this.moveShip(this.ship3, 2);
-    this.moveShip(this.ship4, 1.5);
+    this.moveShip(this.ship1, 2.4 + this.level / 8);
+    this.moveShip(this.ship2, 1.4 + this.level / 8);
+    this.moveShip(this.ship3, 1.9 + this.level / 8);
+    this.moveShip(this.ship4, 1.4 + this.level / 8);
   }
 
   moveShip(ship, speed) {
@@ -120,7 +121,7 @@ export default class GameScene extends Phaser.Scene {
       this.levelPoints = 0;
     }
 
-    this.levelLabel.text = 'Level: ' + String(this.level);
+    this.levelLabel.text = 'LEVEL: ' + String(this.level);
   }
 
   movePlayerManager() {
