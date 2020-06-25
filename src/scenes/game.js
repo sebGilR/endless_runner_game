@@ -13,6 +13,15 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
+    this.soundConfig = {
+      mute: false,
+      volume: 0.1,
+      rate: 1,
+      datune: 0,
+      seek: 0,
+      loop: false,
+      delay: 0
+    }
     this.pickupSound = this.sound.add('audio_pickup');
 
     this.background = this.add.tileSprite(0, 0, config.width, config.height, 'background');
@@ -97,7 +106,7 @@ export default class GameScene extends Phaser.Scene {
     this.scoreHandler();
     this.levelHandler();
 
-    this.explosionSound.play();
+    this.explosionSound.play(this.soundConfig);
   }
 
   resetShipPos(ship) {
@@ -125,7 +134,7 @@ export default class GameScene extends Phaser.Scene {
   livesHandler() {
     this.lives -= 1
     if (this.lives < 0) {
-      console.log('Game Over')
+      this.pickupSound.play(this.soundConfig);
     }
 
     this.livesLabel.text = 'LIVES: ' + String(this.lives);
