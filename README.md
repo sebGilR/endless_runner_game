@@ -1,8 +1,8 @@
 # Collider - Phaser Game
 
-This is a 2D endless running game created using ES6 and the game engine Phaser 3. The objective of the game is to collide against other ships in order to accumulate points.
+This is a 2D endless running game created using ES6 and the game engine Phaser 3. The objective of the game is to collide against other ships to accumulate points.
 
-Difficulty is increased according to the level of the player.
+The difficulty is increased according to the level of the player.
 
 ## Design Process
 
@@ -21,7 +21,7 @@ Once it was cleared what was possible, it was time to define what the objective 
 By the end of the design process the following items were defined:
 
 - Assets (audios and visuals) needed.
-- Game play and game mechanics.
+- Gameplay and game mechanics.
 - Levels and difficulty.
 - Interaction between the player and the game elements (enemies/ships).
 - Scoring system.
