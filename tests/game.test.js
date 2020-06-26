@@ -31,7 +31,7 @@ describe('Game initial values', () => {
 
 describe('Game actions', () => {
   describe('moveShip', () => {
-    it('Moves the ship vertically', () => {
+    it('Moves the enemy ships vertically', () => {
       game.moveShip(ship, 1);
       expect(ship.y).toBe(101);
     });
@@ -95,7 +95,7 @@ describe('Game actions', () => {
   });
 
   describe('levelHandler', () => {
-    it('Increases levelPoints by 15', () => {
+    it('Increases levelPoints by 15 if level points are below 500', () => {
       game.levelPoints = 0;
       game.levelLabel = {};
       game.levelHandler();
@@ -118,7 +118,7 @@ describe('Game actions', () => {
   });
 
   describe('livesHandler', () => {
-    it('Decreases live count by 1', () => {
+    it('Decreases live count by 1 when called', () => {
       game.pickupSound = { play: jest.fn() };
       game.livesLabel = {};
       game.livesHandler();
@@ -132,7 +132,7 @@ describe('Game actions', () => {
       expect(game.pickupSound.play.mock.calls.length).toBe(1);
     });
 
-    it('Updates global score variable if lives go below 0', () => {
+    it('Updates global score variable if lives go below 0 when called', () => {
       game.sys = { game: { globals: { score: 0 } } };
       game.pickupSound = { play: jest.fn() };
       game.scene = { start: jest.fn() }
@@ -141,6 +141,17 @@ describe('Game actions', () => {
       game.score = 30;
       game.livesHandler();
       expect(game.sys.game.globals.score).toBe(30);
+    });
+
+    it('Reset local score variable to 15 if lives go below 0 when called', () => {
+      game.sys = { game: { globals: { score: 0 } } };
+      game.pickupSound = { play: jest.fn() };
+      game.scene = { start: jest.fn() }
+      game.livesLabel = {};
+      game.lives = 0;
+      game.score = 30;
+      game.livesHandler();
+      expect(game.score).toBe(15);
     });
 
     it('Calls the leaderboard scene and the game is over', () => {
@@ -154,7 +165,7 @@ describe('Game actions', () => {
       expect(game.scene.start.mock.calls.length).toBe(1);
     });
 
-    it('Resets lives count to 3', () => {
+    it('Resets lives count to 3 when the game is over', () => {
       game.sys = { game: { globals: { score: 0 } } };
       game.pickupSound = { play: jest.fn() };
       game.scene = { start: jest.fn() }

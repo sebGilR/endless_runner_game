@@ -134,6 +134,7 @@ export default class GameScene extends Phaser.Scene {
     this.lives -= 1;
     if (this.lives < 0) {
       this.sys.game.globals.score = this.score;
+      this.score = 15;
       this.scene.start('Leaderboard');
       this.lives = 3;
     }
