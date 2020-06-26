@@ -1,0 +1,17 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(58, 58, 58);
+  color: white;
+}
+
+h1 {
+  margin: 0;
+}
+
+canvas {
+  border: 3px solid gray;
+  border-radius: 6px;
+}
